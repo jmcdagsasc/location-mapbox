@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
 import Geocoder from "react-mapbox-gl-geocoder";
 import { Container, Col, Row } from "reactstrap";
+import StoreFinder from "../components/StoreFinder";
 
 const mapStyle = {
   width: "100%",
@@ -74,9 +75,22 @@ class MapView extends PureComponent {
               {...viewport}
               {...mapStyle}
               onViewportChange={(viewport) => this.setState({ viewport })}
-            ></ReactMapGL>
+            >
+              <Marker
+                latitude={this.state.viewport.latitude}
+                longitude={this.state.viewport.longitude}
+              >
+                Dirección de envío
+              </Marker>
+            </ReactMapGL>
           </Col>
         </Row>
+        <StoreFinder
+          location={[
+            this.state.viewport.latitude,
+            this.state.viewport.longitude,
+          ]}
+        />
       </Container>
     );
   }
