@@ -1,27 +1,33 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { Component } from "react";
 
-const StoreFinder = ({ location }) => {
-  const [storeDetails, setStoreDetails] = useState("");
-  const URL = "https://apiv4.ordering.co/v400/en/farmazone/business/";
-  const params = {
-    params: "id,name,slug,open,address,phone,cellphone,location",
-    location: location.toString(),
+class StoreFinder extends Component {
+  state = {
+    url: "https://apiv4.ordering.co/v400/en/farmazone/business/",
+    params: {
+      params: "id,name,slug,open,address,phone,cellphone,location",
+      location: this.props.location.toString(),
+    },
+    storeDetails: [],
   };
-  console.log(params);
 
-  axios.get(URL, params).then((res) => setStoreDetails(res.data.result));
-
-  return (
-    <div>
-      <h1>
-        {storeDetails.length
-          ? "Tienda para entrega encontrada"
-          : "Aún no llegamos a esta ubicación"}
-      </h1>
-      <pre>{JSON.stringify(storeDetails)}</pre>
-    </div>
-  );
-};
+  componentDidMount() {
+    axios
+      .get(this.state.url, this.state.params)
+      .then((res) => this.setState({ storeDetails: res.data.result }));
+  }
+  render() {
+    return (
+      <div>
+        <h1>
+          {this.state.storeDetails.length
+            ? "Tienda para entrega encontrada"
+            : "Aún no llegamos a esta ubicación"}
+        </h1>
+        <pre>{JSON.stringify(this.state.storeDetails, 2, null)}</pre>
+      </div>
+    );
+  }
+}
 
 export default StoreFinder;

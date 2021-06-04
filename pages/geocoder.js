@@ -85,12 +85,12 @@ class MapView extends PureComponent {
             </ReactMapGL>
           </Col>
         </Row>
-        <StoreFinder
+        {/* <StoreFinder
           location={[
             this.state.viewport.latitude,
             this.state.viewport.longitude,
           ]}
-        />
+        /> */}
       </Container>
     );
   }
