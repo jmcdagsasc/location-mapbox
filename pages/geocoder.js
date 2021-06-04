@@ -20,8 +20,8 @@ class MapView extends PureComponent {
     super(props);
     this.state = {
       viewport: {
-        latitude: 19.50884,
-        longitude: -99.18781,
+        latitude: 19.341511737775104,
+        longitude: -99.09983885959429,
         zoom: 15,
       },
     };
@@ -29,11 +29,13 @@ class MapView extends PureComponent {
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition((position) => {
-      const coordinates = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      this.setState({ viewport: coordinates });
+      this.setState((prevState) => ({
+        viewport: {
+          ...prevState.viewport,
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        },
+      }));
     });
   }
 

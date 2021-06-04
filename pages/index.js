@@ -11,7 +11,7 @@ export default function Home() {
     width: "100vw",
     height: "800vh",
     latitude: 19.383203133438233,
-    longitude: -99.30395128806748,
+    longitude: -98.79551247142092,
     zoom: 16,
   });
 
@@ -24,12 +24,12 @@ export default function Home() {
       </Head>
       <h1>Map</h1>
       <Link href="/geocoder">Otro mapa</Link>
-      <ReactMapGL
+      {/* <ReactMapGL
         {...viewport}
         mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={(viewport) => setViewport(viewport)}
         mapboxApiAccessToken="pk.eyJ1Ijoiam9yZ2VkYWdzYXNjIiwiYSI6ImNrcGhnMDEwbzBzNW0ydnF4eGxpdTN4bGoifQ.h_owhjWx6lSGkwxoaVUkBw"
-      ></ReactMapGL>
+      ></ReactMapGL> */}
     </div>
   );
 }
