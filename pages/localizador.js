@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import { useState } from "react";
 import StoreByInput from "../components/StoreByInput";
 
@@ -38,11 +39,13 @@ const Locator = () => {
       <button onClick={findStore}>Buscar tienda más cercana</button>
       <br />
       <button onClick={() => setLocation("")}>Borrar</button>
+      <br />
+      <Link href="/">Inicio</Link>
       <div>
         {showStore ? (
           <StoreByInput storeDetails={storeDetails} error={error} />
         ) : (
-          "Hola"
+          ""
         )}
       </div>
     </div>

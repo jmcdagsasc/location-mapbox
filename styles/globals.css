@@ -14,3 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.class {
+  width: 100%;
+  height: auto;
+  position: relative;
+}

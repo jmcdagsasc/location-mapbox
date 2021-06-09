@@ -1,8 +1,10 @@
 import React, { PureComponent } from "react";
+import Image from "next/image";
 import ReactMapGL, { Marker } from "react-map-gl";
 import Geocoder from "react-mapbox-gl-geocoder";
 import { Container, Col, Row } from "reactstrap";
 import StoreFinder from "../components/StoreFinder";
+import Link from "next/link";
 
 const mapStyle = {
   width: "100%",
@@ -52,8 +54,10 @@ class MapView extends PureComponent {
       <Container fluid={true}>
         <Row>
           <Col>
-            <h2>Mapbox Tutorial</h2>
+            <h2>Ingresa dirección de envío</h2>
           </Col>
+          <br />
+          <Link href="/">Inicio</Link>
         </Row>
         <Row className="py-4">
           <Col xs={2}>
@@ -64,6 +68,7 @@ class MapView extends PureComponent {
               hideOnSelect={true}
               value=""
               queryParams={params}
+              updateInputOnSelect
             />
           </Col>
         </Row>
@@ -80,7 +85,13 @@ class MapView extends PureComponent {
                 latitude={this.state.viewport.latitude}
                 longitude={this.state.viewport.longitude}
               >
-                Dirección de envío
+                <Image
+                  alt="manolo.jpg"
+                  width={48}
+                  height={48}
+                  className="class"
+                  src="/farmazone-marker-icon.png"
+                />
               </Marker>
             </ReactMapGL>
           </Col>

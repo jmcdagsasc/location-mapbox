@@ -23,8 +23,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Map</h1>
-      <Link href="/localizador">Ingresa coordernadas</Link>
-      <Link href="/geocoder">Otro mapa</Link>
+      <Link href="/localizador">Localizador</Link>
+      <Link href="/geocoder">Geocoder</Link>
       {/* <ReactMapGL
         {...viewport}
         mapStyle="mapbox://styles/mapbox/streets-v11"
