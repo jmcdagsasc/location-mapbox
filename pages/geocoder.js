@@ -3,7 +3,6 @@ import Image from "next/image";
 import ReactMapGL, { Marker } from "react-map-gl";
 import Geocoder from "react-mapbox-gl-geocoder";
 import { Container, Col, Row } from "reactstrap";
-import StoreFinder from "../components/StoreFinder";
 import Link from "next/link";
 
 const mapStyle = {
@@ -25,19 +24,26 @@ class MapView extends PureComponent {
       viewport: {
         latitude: 19.341511737775104,
         longitude: -99.09983885959429,
-        zoom: 15,
+        zoom: 16,
       },
+      address: "Dirección",
+      prevLatitude: 19.341511737775104,
+      prevLongitude: -99.09983885959429,
     };
   }
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition((position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
       this.setState((prevState) => ({
         viewport: {
           ...prevState.viewport,
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          latitude,
+          longitude,
         },
+        prevLatitude: latitude,
+        prevLongitude: longitude,
       }));
     });
   }
@@ -46,6 +52,11 @@ class MapView extends PureComponent {
     this.setState({
       viewport,
     });
+    console.log(item);
+    this.setState({ prevLatitude: item.center[1] });
+    this.setState({ prevLongitude: item.center[0] });
+    this.setState({ inputValue: "" });
+    this.setState({ address: item.place_name });
   };
 
   render() {
@@ -61,6 +72,9 @@ class MapView extends PureComponent {
         </Row>
         <Row className="py-4">
           <Col xs={2}>
+            <br />
+            <h2>{this.state.address}</h2>
+            <br />
             <Geocoder
               mapboxApiAccessToken={mapboxApiKey}
               onSelected={this.onSelected}
@@ -68,7 +82,6 @@ class MapView extends PureComponent {
               hideOnSelect={true}
               value=""
               queryParams={params}
-              updateInputOnSelect
             />
           </Col>
         </Row>
@@ -82,11 +95,13 @@ class MapView extends PureComponent {
               onViewportChange={(viewport) => this.setState({ viewport })}
             >
               <Marker
-                latitude={this.state.viewport.latitude}
-                longitude={this.state.viewport.longitude}
+                offsetLeft={0}
+                offsetTop={-24}
+                latitude={this.state.prevLatitude}
+                longitude={this.state.prevLongitude}
               >
                 <Image
-                  alt="manolo.jpg"
+                  alt="Marker Icon"
                   width={48}
                   height={48}
                   className="class"

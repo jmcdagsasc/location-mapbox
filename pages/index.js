@@ -25,12 +25,9 @@ export default function Home() {
       <h1>Map</h1>
       <Link href="/localizador">Localizador</Link>
       <Link href="/geocoder">Geocoder</Link>
-      {/* <ReactMapGL
-        {...viewport}
-        mapStyle="mapbox://styles/mapbox/streets-v11"
-        onViewportChange={(viewport) => setViewport(viewport)}
-        mapboxApiAccessToken="pk.eyJ1Ijoiam9yZ2VkYWdzYXNjIiwiYSI6ImNrcGhnMDEwbzBzNW0ydnF4eGxpdTN4bGoifQ.h_owhjWx6lSGkwxoaVUkBw"
-      ></ReactMapGL> */}
+      <br />
+      <br />
+      <h2>Dirección detectada</h2>
     </div>
   );
 }
