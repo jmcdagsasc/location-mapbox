@@ -1,19 +1,18 @@
 import Head from "next/head";
 import Image from "next/image";
-import Locator from "../components/Locator";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import ReactMapGL from "react-map-gl";
 import { useState } from "react";
 
 export default function Home() {
-  const [viewport, setViewport] = useState({
-    width: "100vw",
-    height: "800vh",
-    latitude: 19.383203133438233,
-    longitude: -98.79551247142092,
-    zoom: 16,
-  });
+  // const [viewport, setViewport] = useState({
+  //   width: "100vw",
+  //   height: "800vh",
+  //   latitude: 19.383203133438233,
+  //   longitude: -98.79551247142092,
+  //   zoom: 16,
+  // });
 
   return (
     <div className={styles.container}>
@@ -25,12 +24,9 @@ export default function Home() {
       <h1>Map</h1>
       <Link href="/localizador">Localizador</Link>
       <Link href="/geocoder">Geocoder</Link>
-      {/* <ReactMapGL
-        {...viewport}
-        mapStyle="mapbox://styles/mapbox/streets-v11"
-        onViewportChange={(viewport) => setViewport(viewport)}
-        mapboxApiAccessToken="pk.eyJ1Ijoiam9yZ2VkYWdzYXNjIiwiYSI6ImNrcGhnMDEwbzBzNW0ydnF4eGxpdTN4bGoifQ.h_owhjWx6lSGkwxoaVUkBw"
-      ></ReactMapGL> */}
+      {/* <br />
+      <br />
+      <h2>Dirección detectada</h2> */}
     </div>
   );
 }
