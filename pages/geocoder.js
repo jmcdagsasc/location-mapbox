@@ -4,7 +4,6 @@ import ReactMapGL, { Marker } from "react-map-gl";
 import Geocoder from "react-mapbox-gl-geocoder";
 import { Container, Col, Row } from "reactstrap";
 import Link from "next/link";
-
 const mapStyle = {
   width: "100%",
   height: 600,
@@ -49,43 +48,57 @@ class MapView extends PureComponent {
   }
 
   onSelected = (viewport, item) => {
+    console.log("ON SELECTED 1")
     this.setState({
       viewport,
     });
     console.log(item);
+    console.log("ON SELECTED 2")
     this.setState({ prevLatitude: item.center[1] });
     this.setState({ prevLongitude: item.center[0] });
-    this.setState({ inputValue: "" });
+    this.setState({ inputValue: item.center[0] });
     this.setState({ address: item.place_name });
   };
-
   render() {
     const { viewport } = this.state;
     return (
       <Container fluid={true}>
-        <Row>
-          <Col>
-            <h2>Ingresa dirección de envío</h2>
-          </Col>
-          <br />
-          <Link href="/">Inicio</Link>
-        </Row>
-        <Row className="py-4">
-          <Col xs={2}>
+        <input type="checkbox" id="geocoder-checkbox" />
+        <header>
+          <Row>
+            <Col id="holas">
+              <h2>Ingresa dirección de envío</h2>
+            </Col>
             <br />
-            <h2>{this.state.address}</h2>
-            <br />
-            <Geocoder
-              mapboxApiAccessToken={mapboxApiKey}
-              onSelected={this.onSelected}
-              viewport={viewport}
-              hideOnSelect={true}
-              value=""
-              queryParams={params}
-            />
-          </Col>
-        </Row>
-        <Row>
+            <Link href="/">Inicio</Link>
+          </Row>
+          <Row className="py-4">
+            <Col xs={2} id="holes">
+
+              <label for="geocoder-checkbox">
+                <Geocoder
+                  style={{ content: "Mexico" }}
+                  className="geocoder"
+                  mapboxApiAccessToken={mapboxApiKey}
+                  onSelected={this.onSelected}
+                  viewport={viewport}
+                  hideOnSelect={true}
+                  value={this.state.address}
+                  queryParams={params}
+                /></label>
+              <div className="geocoder-section" id="geocoder-section">
+                <div
+                  role="navigation"
+                  className="geocoder-content"
+                  aria-label="geocoder content"
+                >
+                  <label for="geocoder-checkbox">
+                    <p className="geocoder-address">{this.state.address}</p></label>
+                </div>
+              </div>
+            </Col>
+          </Row>
+          {/* <Row>
           <Col>
             <ReactMapGL
               mapboxApiAccessToken={mapboxApiKey}
@@ -110,13 +123,13 @@ class MapView extends PureComponent {
               </Marker>
             </ReactMapGL>
           </Col>
-        </Row>
-        {/* <StoreFinder
+        </Row> */}
+          {/* <StoreFinder
           location={[
             this.state.viewport.latitude,
             this.state.viewport.longitude,
           ]}
-        /> */}
+        /> */}</header>
       </Container>
     );
   }

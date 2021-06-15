@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import Locator from "../components/Locator";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import ReactMapGL from "react-map-gl";
