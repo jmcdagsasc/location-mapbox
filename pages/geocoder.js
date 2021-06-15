@@ -79,7 +79,8 @@ class MapView extends PureComponent {
               mapboxApiAccessToken={mapboxApiKey}
               onSelected={this.onSelected}
               viewport={viewport}
-              hideOnSelect={true}
+              hideOnSelect={false}
+              updateInputOnSelect
               value=""
               queryParams={params}
             />
