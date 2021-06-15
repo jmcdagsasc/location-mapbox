@@ -24,9 +24,9 @@ export default function Home() {
       <h1>Map</h1>
       <Link href="/localizador">Localizador</Link>
       <Link href="/geocoder">Geocoder</Link>
-      {/* <br />
       <br />
-      <h2>Dirección detectada</h2> */}
+      <br />
+      <h2>Dirección detectada</h2>
     </div>
   );
 }
